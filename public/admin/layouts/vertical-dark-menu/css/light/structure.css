@@ -213,7 +213,7 @@ code {
   margin-right: 80px;
 }
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -239,7 +239,7 @@ code {
   justify-content: space-between;
 }
 .header-container .theme-brand .theme-logo a img {
-  width: 34px;
+  /*width: 34px;*/
   height: 34px;
 }
 .header-container .theme-text {
@@ -658,7 +658,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   height: 18px;
 }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -755,7 +755,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   background: rgb(248, 248, 248);
 }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -1123,7 +1123,6 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   padding-right: 24px;
   margin-right: 36px;
   font-size: 14px;
-  color: #515365;
 }
 #sidebar ul.menu-categories li.menu ul.submenu > li a:before {
   content: "";
@@ -1275,7 +1274,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   animation-name: e-fadeInUp;
 }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
@@ -1327,7 +1326,7 @@ body.alt-menu #content {
   transition: none;
 }
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================
