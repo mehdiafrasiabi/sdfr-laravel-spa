@@ -12,6 +12,8 @@ use App\Livewire\Admin\Product\create as ProductCreate;
 use App\Livewire\Admin\Product\content as ProductContent;
 use App\Livewire\Admin\Product\CkUpload;
 use App\Livewire\Admin\Payment\Index as PaymentMethodIndex;
+use App\Livewire\Admin\Setting\ContactUs\Index as ContactUsIndex;
+
 
 
 
@@ -37,4 +39,7 @@ Route::name('admin.')->group(function () {
 
     //PaymentMethod
     Route::get('/paymentMethod',PaymentMethodIndex::class)->name('paymentMethod.index');
+
+    //Setting Website
+    Route::get('/contact-us',ContactUsIndex::class)->name('contact-us.index');
 });

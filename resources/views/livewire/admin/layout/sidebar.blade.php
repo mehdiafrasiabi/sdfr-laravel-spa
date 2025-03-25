@@ -276,7 +276,7 @@
                     </div>
                 </a>
             </li>
-            {{--Story Done--}}
+            {{--Story --}}
             <li class="menu">
                 <a href="#" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
@@ -298,7 +298,7 @@
             </li>
             {{--Setting--}}
             <li class="menu">
-                <a href="#setting" aria-expanded="false" class="dropdown-toggle">
+                <a href="#setting" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -308,7 +308,13 @@
                                 d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg>
                         <span>تنظیمات سایت</span>
-
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
                     </div>
                 </a>
                 <ul class="collapse submenu list-unstyled" id="setting" data-bs-parent="#accordionExample">
@@ -319,16 +325,16 @@
                         <a href="./table-datatable-striped-table.html">تنظیمات قوتر</a>
                     </li>
                     <li>
+                        <a href="{{route('admin.contact-us.index')}}">ارتباط با ما </a>
+                    </li>
+                    <li>
                         <a href="./table-datatable-custom.html">رد شده</a>
                     </li>
                     <li>
                         <a href="./table-datatable-miscellaneous.html">مدیریت بنز های اصلی</a>
                     </li>
                 </ul>
-
             </li>
-
-
             <div class="ps__rail-x" style="left: 0px; bottom: -147px;">
                 <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
             </div>
