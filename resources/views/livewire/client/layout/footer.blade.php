@@ -85,7 +85,7 @@
                             </div>
                             <ul class="flex flex-col space-y-1">
                                 <li>
-                                    <a href="{{route('client.rules')}}"
+                                    <a href="{{route('client.terms')}}"
                                        class="inline-flex font-semibold text-sm text-muted hover:text-primary">
                                         قوانین و مقررات
                                     </a>

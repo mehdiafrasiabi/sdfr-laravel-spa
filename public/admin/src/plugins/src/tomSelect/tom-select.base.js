@@ -879,7 +879,7 @@
 	  dom_el.dispatchEvent(event);
 	};
 	/**
-	 * Apply CSS rules to a dom element
+	 * Apply CSS terms to a dom element
 	 *
 	 */
 
@@ -4161,5 +4161,5 @@
 	return TomSelect;
 
 }));
-var tomSelect=function(el,opts){return new TomSelect(el,opts);} 
+var tomSelect=function(el,opts){return new TomSelect(el,opts);}
 //# sourceMappingURL=tom-select.base.js.map
