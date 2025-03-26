@@ -26,7 +26,7 @@
                     فقط کافیه با کمی تلاش و برنامه ریزی اصولی خودتو رتبه برتر کنی !
 
                 </p>
-                <a href="/client/series.html"
+                <a href="{{route('client.contact-us')}}"
                    class="inline-flex items-center justify-center gap-1 h-11 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">
                     <span class="font-semibold text-sm">همین حالا شروع کن</span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"

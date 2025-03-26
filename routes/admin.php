@@ -13,6 +13,8 @@ use App\Livewire\Admin\Product\content as ProductContent;
 use App\Livewire\Admin\Product\CkUpload;
 use App\Livewire\Admin\Payment\Index as PaymentMethodIndex;
 use App\Livewire\Admin\Setting\ContactUs\Index as ContactUsIndex;
+use App\Livewire\Admin\Story\Index as StoryIndex;
+
 
 
 
@@ -42,4 +44,7 @@ Route::name('admin.')->group(function () {
 
     //Setting Website
     Route::get('/contact-us',ContactUsIndex::class)->name('contact-us.index');
+
+    //Story
+    Route::get('/story',StoryIndex::class)->name('story.index');
 });

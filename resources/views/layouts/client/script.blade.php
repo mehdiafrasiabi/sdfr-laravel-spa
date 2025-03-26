@@ -3,6 +3,7 @@
 <script src="/client/assets/js/dependencies/plyr.min.js"></script>
 <script src="/client/assets/js/app.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 <script>
     window.addEventListener('success', function(event) {
         Toastify({
@@ -14,3 +15,4 @@
         }).showToast();
     });
 </script>
+@stack('script')
