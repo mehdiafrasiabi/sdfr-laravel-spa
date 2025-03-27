@@ -3,6 +3,7 @@
 namespace App\Livewire\Client\ContactUs;
 
 use App\Models\ContactUs;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -11,7 +12,18 @@ class Index extends Component
     public $name;
     public $mobile;
     public $text;
+    use SEOTools;
+    public function mount()
+    {
+        $this->seoConfig();
+    }
 
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('ارتباط با ما ')
+            ->setDescription('در این صفحه میتوانید اطلاعات ارتباطی خود را وارد کرده و کارشناسان ما در اسرع وقت با شما ارتباط برقرار خواهد کرد .');
+    }
     public function submit($formData,ContactUs $contactUs)
     {
         $validator = Validator::make($formData,

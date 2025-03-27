@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
             StateSeeder::class,
             CitySeeder::class,
             CategoriesTableSeeder::class,
-            CategoryFeaturesTableSeeder::class
+            CategoryFeaturesTableSeeder::class,
+            ProductsTableSeeder::class,
+            ProductImagesTableSeeder::class,
+            SeoItemsTableSeeder::class,
+            ContactUsTableSeeder::class
         ]);
     }
 }

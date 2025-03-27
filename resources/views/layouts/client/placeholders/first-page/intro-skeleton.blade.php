@@ -1,76 +1,76 @@
 <div>
-    <style>
-        .intro-skeleton {
-            width: 100%;
-            max-width: 1200px;
-            height: 250px;
-            background: linear-gradient(to right, #ff0000, #5e00a0, #0000ff);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .skeleton-img {
-            width: 200px;
-            height: 200px;
-            background: #ccc;
-            border-radius: 10px;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        .skeleton-text {
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .skeleton-title {
-            width: 70%;
-            height: 25px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        .skeleton-subtitle {
-            width: 90%;
-            height: 15px;
-            background: #d0d0d0;
-            border-radius: 5px;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        .skeleton-button {
-            width: 120px;
-            height: 40px;
-            background: #d0d0d0;
-            border-radius: 20px;
-            animation: shimmer 1.5s infinite linear;
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-color: #e0e0e0;
-            }
-            50% {
-                background-color: #f0f0f0;
-            }
-            100% {
-                background-color: #e0e0e0;
-            }
-        }
-    </style>
     <div class="intro-skeleton">
         <div class="skeleton-img"></div>
         <div class="skeleton-text">
-            <div class="skeleton-title"></div>
-            <div class="skeleton-subtitle"></div>
-            <div class="skeleton-subtitle"></div>
-            <div class="skeleton-button"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-btn"></div>
         </div>
     </div>
+
+    <style>
+        .intro-skeleton {
+            width: 100%;
+            max-width: 1100px;
+            height: 260px;
+            background: #161616;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .skeleton-img {
+            width: 200px;
+            height: 200px;
+            background: #222;
+            border-radius: 50%;
+            margin-right: 40px;
+            position: relative;
+        }
+        .skeleton-text {
+            flex: 1;
+        }
+        .skeleton-line {
+            height: 24px;
+            background: #222;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            width: 90%;
+        }
+        .skeleton-line.short {
+            width: 60%;
+        }
+        .skeleton-btn {
+            width: 160px;
+            height: 44px;
+            background: #222;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* افکت انیمیشن لودینگ */
+        .skeleton-img, .skeleton-line, .skeleton-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .skeleton-img::after, .skeleton-line::after, .skeleton-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
+
 </div>

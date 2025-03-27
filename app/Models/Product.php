@@ -47,8 +47,6 @@ class Product extends Model
                 'p_code' => config('app.name') . '-' . $this->generateProductCode(),
             ]
         );
-        dd($formData, $productId);
-
     }
     public function submitToSeoItem($formData, $productId)
     {
@@ -85,9 +83,7 @@ class Product extends Model
     public function saveImages($photos, $productId)
     {
         foreach ($photos as $photo) {
-            $this->uploadImageInWebpFormat($photo, $productId, 100, 100, 'small');
-            $this->uploadImageInWebpFormat($photo, $productId, 300, 300, 'medium');
-            $this->uploadImageInWebpFormat($photo, $productId, 800, 800, 'large');
+            $this->uploadImageInWebpFormat($photo, $productId, 1200, 675, 'photo');
             $photo->delete();
 
         }
@@ -95,7 +91,7 @@ class Product extends Model
     public function generateProductCode()
     {
         do {
-            $randomCode = rand(1000, 100000000);
+            $randomCode = rand(1000, 100000);
             $checkCode = Product::query()->where('p_code', $randomCode)->first();
 
         } while ($checkCode);
@@ -105,10 +101,7 @@ class Product extends Model
     {
 
         $productImage->delete();
-        \Illuminate\Support\Facades\File::delete(public_path('products/' . $productId . '/small/' . $productImage->path));
-        \Illuminate\Support\Facades\File::delete(public_path('products/' . $productId . '/medium/' . $productImage->path));
-        \Illuminate\Support\Facades\File::delete(public_path('products/' . $productId . '/large/' . $productImage->path));
-
+        \Illuminate\Support\Facades\File::delete(public_path('products/' . $productId . '/photo/' . $productImage->path));
     }
 
     public function setCoverOldImage($photoId, $productId)

@@ -62,7 +62,7 @@
                                 {{$product->p_code}}
                             </td>
                             <td>
-                                <img src="/products/{{$product->id}}/small/{{@$product->coverImage->path}}" alt="">
+                                <img style="width:70px;height: 70px" src="/products/{{$product->id}}/photo/{{@$product->coverImage->path}}" alt="">
                             </td>
                             <td>
                                 <div class="media">

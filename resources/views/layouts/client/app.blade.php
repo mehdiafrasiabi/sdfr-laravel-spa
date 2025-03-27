@@ -3,7 +3,7 @@
 
 <head>
     @include('layouts.client.link')
-    <title>مشاوره تحصیلی - SDFR</title>
+    {!! SEO::generate() !!}
 </head>
 
 <body>

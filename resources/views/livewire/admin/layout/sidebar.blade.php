@@ -219,7 +219,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
                     <li>
-                        <a class="text-white badge badge-success" href="#">مشتریان</a>
+                        <a class="text-white badge badge-success" href="{{route('admin.user.index')}}">مشتریان</a>
                     </li>
                     <li>
                         <a class="text-white badge badge-danger" href="#">ادمین ها</a>

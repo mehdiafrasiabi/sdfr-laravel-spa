@@ -103,7 +103,7 @@
             <!-- end features -->
 
             <!-- section:latest-courses -->
-            <livewire:client.home.latest-course.index/>
+            <livewire:client.home.latest-course.index />
             <!-- end section:latest-courses -->
         </div>
         <!-- end container -->

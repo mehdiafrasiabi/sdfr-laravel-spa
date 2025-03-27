@@ -14,7 +14,7 @@
                         <th scope="col">#</th>
                         <th scope="col">نام</th>
                         <th scope="col">تلفن تماس</th>
-                        <th scope="col">متن پیغام</th>
+                        <th  scope="col">متن پیغام</th>
                         <th scope="col">وضعیت</th>
                         <th scope="col">تاریخ ثبت درخواست</th>
                         <th class="text-center" scope="col"></th>
@@ -35,11 +35,7 @@
                                 {{$item->mobile}}
                             </td>
                             <td>
-                                <div class="media">
-                                    <div class="media-body align-self-center">
-                                        <p class="mb-0">{{$item->text}}</p>
-                                    </div>
-                                </div>
+                                <p style="display: block">{{$item->text}}</p>
                             </td>
 
                             <td>

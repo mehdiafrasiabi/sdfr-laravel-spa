@@ -142,7 +142,7 @@
                             <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 m-3">
                                 <div class="card style-6">
                                     <span class="badge badge-danger"></span>
-                                    <img src="/products/{{$product->id}}/small/{{@$photo->path}}" class="card-img-top"
+                                    <img src="/products/{{$product->id}}/photo/{{@$photo->path}}" class="card-img-top"
                                          alt="...">
                                     <div class="card-footer">
                                         <div class="row">

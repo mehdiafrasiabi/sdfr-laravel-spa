@@ -91,7 +91,8 @@ class Create extends Component
     /////// Edit
     public function removeOldPhoto(ProductImage $productImage , $productId)
     {
-        $this->repository->removeOldPhoto($productImage , $productId);
+        $productImage->delete();
+        \Illuminate\Support\Facades\File::delete(public_path('products/' . $productId . '/photo/' . $productImage->path));
     }
 
     public function setOldCoverImage($photoId)
