@@ -6,6 +6,8 @@ use App\Livewire\Client\Home\Index as HomeIndex;
 use App\Livewire\Client\Terms\Index as RuleIndex;
 use App\Livewire\Client\Auth\Index as AuthIndex;
 use App\Livewire\Client\Product\Index as ProductIndex;
+use App\Livewire\Client\Cart\Index as CartIndex;
+use App\Livewire\Client\Payment\callback as PaymentCallback;
 use Illuminate\Support\Facades\Route;
 
 Route::name('client.')->group(function () {
@@ -22,6 +24,9 @@ Route::name('client.')->group(function () {
         Route::get('/auth/gmail/callback', [AuthIndex::class, 'handleProviderCallback'])->name('gmail.callback');
     });
     Route::middleware('auth')->group(function () {
+        Route::get('/checkout/cart',CartIndex::class)->name('checkout.cart');
         Route::get('/logout', [AuthIndex::class,'clientLogout'])->name('logout');
+        Route::get('/payment/callback',PaymentCallback::class)->name('payment.callback');
+
     });
 });

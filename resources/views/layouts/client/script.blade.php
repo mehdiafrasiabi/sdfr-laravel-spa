@@ -14,5 +14,14 @@
             }
         }).showToast();
     });
+    window.addEventListener('add-to-cart', function() {
+        Toastify({
+            text:'با موفقیت به سبد خرید شما اضافه شد ',
+            duration: 4000,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    });
 </script>
 @stack('script')

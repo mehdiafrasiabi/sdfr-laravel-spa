@@ -61,7 +61,7 @@
                                         <span class="font-bold text-xs text-success">{{$item->title}}</span>
                                     </div>
                                     <h2 class="font-bold text-sm">
-                                        <a href="/client/course-detail.html"
+                                        <a href="{{route('client.product',$item->p_code)}}/{{$item->seo->slug}}"
                                            class="line-clamp-1 text-foreground transition-colors hover:text-primary">
                                             {{$item->name}}
                                         </a>

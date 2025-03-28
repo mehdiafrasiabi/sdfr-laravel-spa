@@ -372,7 +372,7 @@
                     </button>
                     <!-- end openSearchBox:button -->
                     @if(\Illuminate\Support\Facades\Auth::check())
-                    <a href="./cart.html"
+                    <a href="{{route('client.checkout.cart')}}"
                        class="inline-flex items-center justify-center relative w-10 h-10 bg-secondary rounded-full text-foreground">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-5 h-5">
@@ -383,7 +383,7 @@
                                 <span
                                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                                 <span
-                                    class="relative inline-flex items-center justify-center rounded-full h-5 w-5 bg-primary text-primary-foreground font-bold text-xs">2</span>
+                                    class="relative inline-flex items-center justify-center rounded-full h-5 w-5 bg-primary text-primary-foreground font-bold text-xs">{{$cart}}</span>
                             </span>
                     </a>
                     @endif
