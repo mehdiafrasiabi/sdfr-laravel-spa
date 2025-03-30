@@ -17,7 +17,6 @@ return new class extends Migration
             $table->enum('type', ['fixed', 'percent']);
             $table->bigInteger('value');
             $table->integer('limit');
-            $table->integer('min_purchase');
             $table->dateTime('expires_at');
             $table->boolean('is_active')->default(true);
             $table->foreignId('user_id')->nullable()->constrained();
