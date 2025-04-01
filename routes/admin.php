@@ -15,14 +15,9 @@ use App\Livewire\Admin\Payment\Index as PaymentMethodIndex;
 use App\Livewire\Admin\Setting\ContactUs\Index as ContactUsIndex;
 use App\Livewire\Admin\Story\Index as StoryIndex;
 use App\Livewire\Admin\User\Index as UserIndex;
-
-
-
-
-
-
-
-
+use App\Livewire\Admin\Transaction\Index as TransactionIndex;
+use App\Livewire\Admin\Order\Details as OrderDetails;
+use App\Livewire\Admin\Order\Index as OrderIndex;
 
 Route::name('admin.')->group(function () {
     //Dashboard
@@ -51,5 +46,9 @@ Route::name('admin.')->group(function () {
 
     //User
     Route::get('/user',UserIndex::class)->name('user.index');
-
+    //Order
+    Route::get('/order', OrderIndex::class)->name('order.index');
+    Route::get('/order/{order}', OrderDetails::class)->name('order.details');
+    //Transaction
+    Route::get('/transaction',TransactionIndex::class)->name('transaction.index');
 });

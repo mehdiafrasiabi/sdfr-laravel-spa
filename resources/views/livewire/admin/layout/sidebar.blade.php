@@ -141,24 +141,24 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="orders" data-bs-parent="#accordionExample">
                     <li>
-                        <a class="text-white badge badge-light-warning" href="?status=all"> کل
+                        <a class="text-white badge badge-light-warning" href="{{route('admin.order.index')}}?status=all"> کل
 
                             سفارشات </a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-secondary" href="?status=pending">
+                        <a class="text-white badge badge-light-secondary" href="{{route('admin.order.index')}}?status=pending">
                             درانتظار </a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-info" href="?status=processing">
+                        <a class="text-white badge badge-light-info" href="{{route('admin.order.index')}}?status=processing">
                             درحال پردازش </a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-success" href="?status=completed">
+                        <a class="text-white badge badge-light-success" href="{{route('admin.order.index')}}?status=completed">
                             کامل شده </a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-danger" href="?status=cancelled">
+                        <a class="text-white badge badge-light-danger" href="{{route('admin.order.index')}}?status=cancelled">
                             لغوشده </a>
                     </li>
                 </ul>
@@ -184,13 +184,13 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="transactions" data-bs-parent="#accordionExample">
                     <li>
-                        <a class="text-white badge badge-light-info" href="?status=all"> لیست تراکنش ها </a>
+                        <a class="text-white badge badge-light-info" href="{{route('admin.transaction.index')}}?status=all"> لیست تراکنش ها </a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-success" href="?status=completed"> موفق </a>
+                        <a class="text-white badge badge-light-success" href="{{route('admin.transaction.index')}}?status=completed"> موفق </a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-danger" href="?status=canceled"> ناموفق </a>
+                        <a class="text-white badge badge-light-danger" href="{{route('admin.transaction.index')}}?status=cancelled"> ناموفق </a>
                     </li>
 
                 </ul>

@@ -417,7 +417,7 @@
                                  x-on:click.outside="isOpen = false">
                                 <div
                                     class="w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 p-3">
-                                    <a href="./profile.html"
+                                    <a href="{{route('client.profile.dashboard')}}"
                                        class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

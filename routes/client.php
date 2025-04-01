@@ -8,6 +8,11 @@ use App\Livewire\Client\Auth\Index as AuthIndex;
 use App\Livewire\Client\Product\Index as ProductIndex;
 use App\Livewire\Client\Cart\Index as CartIndex;
 use App\Livewire\Client\Payment\callback as PaymentCallback;
+use App\Livewire\Client\Profile\Dashboard as ProfileDashboard;
+use App\Livewire\Client\Profile\Notifications as ProfileNotifications;
+use App\Livewire\Client\Profile\Wishlist as ProfileWishlist;
+use App\Livewire\Client\Profile\Edit as ProfileEdit;
+use App\Livewire\Client\Profile\Ticket\Index as ProfileTicketIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::name('client.')->group(function () {
@@ -28,5 +33,11 @@ Route::name('client.')->group(function () {
         Route::get('/logout', [AuthIndex::class,'clientLogout'])->name('logout');
         Route::get('/payment/callback',PaymentCallback::class)->name('payment.callback');
 
+        //Profile
+        Route::get('/profile-dashboard',ProfileDashboard::class)->name('profile.dashboard');
+        Route::get('/profile-notification',ProfileNotifications::class)->name('profile.notification');
+        Route::get('/profile-wishlist',ProfileWishlist::class)->name('profile.wishlist');
+        Route::get('/profile-edit',ProfileEdit::class)->name('profile.edit');
+        Route::get('/profile-ticket',ProfileTicketIndex::class)->name('profile.ticket.index');
     });
 });

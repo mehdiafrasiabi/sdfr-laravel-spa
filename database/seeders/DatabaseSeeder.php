@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             ProductImagesTableSeeder::class,
             SeoItemsTableSeeder::class,
             ContactUsTableSeeder::class,
-            PaymentMethodsTableSeeder::class
+            PaymentMethodsTableSeeder::class,
+            CouponsTableSeeder::class
         ]);
     }
 }
