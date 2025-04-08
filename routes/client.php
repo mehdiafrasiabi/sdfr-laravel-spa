@@ -1,5 +1,4 @@
 <?php
-
 use App\Livewire\Client\AboutUs\Index as AboutUs;
 use App\Livewire\Client\ContactUs\Index as ContactUs;
 use App\Livewire\Client\Home\Index as HomeIndex;
@@ -13,6 +12,9 @@ use App\Livewire\Client\Profile\Notifications as ProfileNotifications;
 use App\Livewire\Client\Profile\Wishlist as ProfileWishlist;
 use App\Livewire\Client\Profile\Edit as ProfileEdit;
 use App\Livewire\Client\Profile\Ticket\Index as ProfileTicketIndex;
+use App\Livewire\Client\Profile\Financial as ProfileFinancial;
+use App\Livewire\Client\Profile\Barnameh as ProfilePlan;
+use App\Livewire\Client\Profile\PersonalInformation as ProfilePersonalInformation;
 use Illuminate\Support\Facades\Route;
 
 Route::name('client.')->group(function () {
@@ -39,5 +41,8 @@ Route::name('client.')->group(function () {
         Route::get('/profile-wishlist',ProfileWishlist::class)->name('profile.wishlist');
         Route::get('/profile-edit',ProfileEdit::class)->name('profile.edit');
         Route::get('/profile-ticket',ProfileTicketIndex::class)->name('profile.ticket.index');
+        Route::get('/profile-financial',ProfileFinancial::class)->name('profile.financial.index');
+        Route::get('/profile-plan',ProfilePlan::class)->name('profile.plan.index');
+        Route::get('/profile-personalInformation',ProfilePersonalInformation::class)->name('profile.personal');
     });
 });

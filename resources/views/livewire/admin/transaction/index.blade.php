@@ -62,6 +62,10 @@
                             aria-label="Date: activate to sort column ascending" style="width: 65px;">
                             تاریخ
                         </th>
+                        <th class="sorting" tabindex="0" aria-controls="invoice-list" rowspan="1" colspan="1"
+                            aria-label="Date: activate to sort column ascending" style="width: 65px;">
+                            سفارش
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -124,6 +128,11 @@
                                         x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line
                                         x1="3" y1="10" x2="21" y2="10"></line>
                                 </svg> {{verta($item->created_at)}} </span>
+                            </td>
+                            <td>
+                                <a href="{{route('admin.order.details',$item->order->id)}}" class=" badge badge-light-success text-start action-delete">
+                                    جزیات سفارش
+                                </a>
                             </td>
                         </tr>
                     @endforeach

@@ -72,7 +72,9 @@
                                                         </p>
                                                         <p class="inv-email-address badge text-white badge-{{$orderDetails->statusPaymentColor}}">
                                                             وضعیت پرداخت :
-                                                            {{$orderDetails->payment->status}}
+                                                            {{$orderDetails->payment->status=='pending' ? 'درحال پردازش' : ''}}
+                                                            {{$orderDetails->payment->status=='completed' ? 'پرداخت شده' : ''}}
+                                                            {{$orderDetails->payment->status=='cancelled' ? 'لغو شده' : ''}}
                                                         </p>
                                                     </div>
 
@@ -88,8 +90,7 @@
                                                             <th scope="col">#</th>
                                                             <th scope="col">تصویر محصول</th>
                                                             <th scope="col">نام محصول</th>
-                                                            <th class="text-end" scope="col">Price</th>
-                                                            <th class="text-end" scope="col">Amount</th>
+                                                            <th class="text-end" scope="col">قیمت محصول</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -101,7 +102,6 @@
                                                                 </td>
                                                                 <td>{{$item->product->name}}</td>
                                                                 <td class="text-end">{{number_format($item->price)}}</td>
-                                                                <td class="text-end">{{number_format($item->price*$item->quantity)}}</td>
                                                             </tr>
                                                         @endforeach
                                                         </tbody>
@@ -140,31 +140,6 @@
                         </div>
 
                     </div>
-
-                    <div class="col-xl-3">
-
-                        <div class="invoice-actions-btn">
-
-                            <div class="invoice-action-btn">
-
-                                <div class="row">
-
-                                    <div class="col-xl-12 col-md-3 col-sm-6">
-                                        <p>تغییر وضعیت سفارش</p>
-                                        <select class="form-control text-white bg-{{$statusColor}}" wire:change="changeStatus({{$orderDetails->id}},$event.target.value)">
-                                            <option value="pending" {{$orderDetails->status =='pending' ? 'selected' : ''}}>درحال پردازش</option>
-                                            <option value="processing" {{$orderDetails->status =='processing' ? 'selected' : ''}}>اماده ارسال</option>
-                                            <option value="completed" {{$orderDetails->status =='completed' ? 'selected' : ''}}>ارسال شده</option>
-                                            <option value="canceled" {{$orderDetails->status =='cancelled' ? 'selected' : ''}}>لغو شده</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
                     </div>
 
                 </div>

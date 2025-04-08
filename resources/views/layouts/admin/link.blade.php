@@ -56,6 +56,13 @@
 <link rel="stylesheet" type="text/css" href="/admin/src/plugins/css/dark/table/datatable/dt-global_style.css">
 <link href="/admin/src/assets/css/dark/apps/invoice-list.css" rel="stylesheet" type="text/css" />
 
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link href="/admin/src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css">
+<link href="/admin/src/assets/css/light/apps/contacts.css" rel="stylesheet" type="text/css" />
+
+<link href="/admin/src/assets/css/dark/components/modal.css" rel="stylesheet" type="text/css">
+<link href="/admin/src/assets/css/dark/apps/contacts.css" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL STYLES -->
 @stack('link')
 
 

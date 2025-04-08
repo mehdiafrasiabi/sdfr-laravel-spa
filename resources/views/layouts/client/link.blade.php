@@ -6,4 +6,6 @@
 <link rel="stylesheet" href="/client/assets/css/fonts.css" />
 <link rel="stylesheet" href="/client/assets/css/app.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<link href="/client/assets/css/custom-pagination.css" rel="stylesheet" type="text/css" />
+<link href="/client/assets/css/custom-pagination2.css" rel="stylesheet" type="text/css" />
 @stack('link')

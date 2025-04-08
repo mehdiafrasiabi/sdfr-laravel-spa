@@ -18,6 +18,10 @@ use App\Livewire\Admin\User\Index as UserIndex;
 use App\Livewire\Admin\Transaction\Index as TransactionIndex;
 use App\Livewire\Admin\Order\Details as OrderDetails;
 use App\Livewire\Admin\Order\Index as OrderIndex;
+use App\Livewire\Admin\Student\Index as StudentIndex;
+use App\Livewire\Admin\Student\Barnameh as StudentPlan;
+use App\Livewire\Admin\Student\ReportMonthly as StudentReportMonthly;
+
 
 Route::name('admin.')->group(function () {
     //Dashboard
@@ -27,7 +31,7 @@ Route::name('admin.')->group(function () {
     Route::get('/state',StateIndex::class)->name('state.index');
     Route::get('/city',CityIndex::class)->name('city.index');
     //Category
-    Route::get('/category/', CategoryIndex::class)->name('category.index');
+    Route::get('/category', CategoryIndex::class)->name('category.index');
     Route::get('/category/{category}/features', CategoryFeature::class)->name('category.features');
     //Product Route
     Route::get('/product', ProductIndex::class)->name('product.index');
@@ -51,4 +55,9 @@ Route::name('admin.')->group(function () {
     Route::get('/order/{order}', OrderDetails::class)->name('order.details');
     //Transaction
     Route::get('/transaction',TransactionIndex::class)->name('transaction.index');
+    //Student
+    Route::get('/student',StudentIndex::class)->name('student.index');
+    Route::get('/student/{student}/plan',StudentPlan::class)->name('student.plan');
+    Route::get('/student/{student}/reportMonthly',StudentReportMonthly::class)->name('student.report');
+
 });

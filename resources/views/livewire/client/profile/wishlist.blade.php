@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./profile-financial.html"
+                    <a href="{{route('client.profile.financial.index')}}"
                        class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
