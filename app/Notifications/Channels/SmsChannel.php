@@ -12,7 +12,7 @@ class SmsChannel
 
         $message = $notification->toSms($notifiable);
 
-        $api = new GhasedakApi(env('GHASEDAKAPI_KEY'));
+        $api = new GhasedakApi(config('services.ghasedak.key'));
         $response = $api->Verify(
             $message['mobile'],  // receptor
             $message['template'],  // name of the template which you've created in you account
@@ -23,6 +23,8 @@ class SmsChannel
         } else {
             return false;
         }
+
+
     }
 
 }

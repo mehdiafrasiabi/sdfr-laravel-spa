@@ -104,7 +104,7 @@
             </li>
             {{--Coupons--}}
             <li class="menu">
-                <a href="#" aria-expanded="false" class="dropdown-toggle">
+                <a href="{{route('admin.coupon.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -257,16 +257,16 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="student" data-bs-parent="#accordionExample">
                     <li>
-                        <a class="text-white badge badge-light-secondary" href="{{route('admin.student.index')}}">همه دانش اموزان</a>
+                        <a class="text-white badge badge-light-secondary" href="{{route('admin.student.index')}}?course_id=all">همه دانش اموزان</a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-success" href="{{route('admin.student.index')}}">سکوی پرتاب</a>
+                        <a class="text-white badge badge-light-success" href="{{route('admin.student.index')}}?course_id=1">سکوی پرتاب</a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-primary" href="#">توسعه و گستردگی </a>
+                        <a class="text-white badge badge-light-primary" href="{{route('admin.student.index')}}?course_id=2">توسعه و گستردگی </a>
                     </li>
                     <li>
-                        <a class="text-white badge badge-light-danger" href="#">کوانتوم</a>
+                        <a class="text-white badge badge-light-danger" href="{{route('admin.student.index')}}?course_id=3">کوانتوم</a>
                     </li>
                 </ul>
             </li>
@@ -360,14 +360,18 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="setting" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="./table-datatable-basic.html">تنظیمات اصلی سایت</a>
+                        <a href="{{route('admin.setting.contact-us.index')}}">ارتباط با ما </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.admin.index')}}">ادمین</a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.setting.general-setting.index')}}">تنظیمات عمومی سایت</a>
                     </li>
                     <li>
                         <a href="./table-datatable-striped-table.html">تنظیمات قوتر</a>
                     </li>
-                    <li>
-                        <a href="{{route('admin.contact-us.index')}}">ارتباط با ما </a>
-                    </li>
+
                     <li>
                         <a href="./table-datatable-custom.html">رد شده</a>
                     </li>

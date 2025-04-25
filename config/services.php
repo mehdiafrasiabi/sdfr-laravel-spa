@@ -40,6 +40,8 @@ return [
         'redirect' => 'http://127.0.0.1:8000/auth/gmail/callback',
     ],'zibal' =>[
         'merchant'=>env('ZIBAL_MERCHANT_ID'),
-    ]
+    ],'ghasedak' => [
+    'key' => env('GHASEDAKAPI_KEY'),
+],
 
 ];

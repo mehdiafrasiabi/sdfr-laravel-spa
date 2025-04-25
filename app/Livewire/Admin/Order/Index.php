@@ -3,15 +3,25 @@
 namespace App\Livewire\Admin\Order;
 
 use App\Models\Order;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
     public $search='';
 
+    public function mount()
+    {
+        $this->seoConfig();
+    }
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('سفارشات');
+    }
     public function changeStatus($orderId, $value)
     {
         $validator = Validator::make(['status' => $value, 'id' => $orderId],

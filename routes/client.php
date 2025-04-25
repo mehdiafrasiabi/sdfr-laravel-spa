@@ -9,12 +9,13 @@ use App\Livewire\Client\Cart\Index as CartIndex;
 use App\Livewire\Client\Payment\callback as PaymentCallback;
 use App\Livewire\Client\Profile\Dashboard as ProfileDashboard;
 use App\Livewire\Client\Profile\Notifications as ProfileNotifications;
-use App\Livewire\Client\Profile\Wishlist as ProfileWishlist;
 use App\Livewire\Client\Profile\Edit as ProfileEdit;
 use App\Livewire\Client\Profile\Ticket\Index as ProfileTicketIndex;
 use App\Livewire\Client\Profile\Financial as ProfileFinancial;
 use App\Livewire\Client\Profile\Barnameh as ProfilePlan;
 use App\Livewire\Client\Profile\PersonalInformation as ProfilePersonalInformation;
+use App\Livewire\Client\Profile\Report as ProfileReport;
+use App\Livewire\Client\Shop\Index as ShopIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::name('client.')->group(function () {
@@ -23,6 +24,7 @@ Route::name('client.')->group(function () {
     Route::get('/terms',RuleIndex::class)->name('terms');
     Route::get('/about-us',AboutUs::class)->name('about-us');
     Route::get('/contact-us',ContactUs::class)->name('contact-us');
+    Route::get('/shop',ShopIndex::class)->name('shop');
 
 
     Route::middleware('guest')->group(function () {
@@ -38,11 +40,11 @@ Route::name('client.')->group(function () {
         //Profile
         Route::get('/profile-dashboard',ProfileDashboard::class)->name('profile.dashboard');
         Route::get('/profile-notification',ProfileNotifications::class)->name('profile.notification');
-        Route::get('/profile-wishlist',ProfileWishlist::class)->name('profile.wishlist');
         Route::get('/profile-edit',ProfileEdit::class)->name('profile.edit');
-        Route::get('/profile-ticket',ProfileTicketIndex::class)->name('profile.ticket.index');
-        Route::get('/profile-financial',ProfileFinancial::class)->name('profile.financial.index');
-        Route::get('/profile-plan',ProfilePlan::class)->name('profile.plan.index');
+        Route::get('/profile-ticket',ProfileTicketIndex::class)->name('profile.ticket');
+        Route::get('/profile-financial',ProfileFinancial::class)->name('profile.financial');
+        Route::get('/profile-plan',ProfilePlan::class)->name('profile.plan');
         Route::get('/profile-personalInformation',ProfilePersonalInformation::class)->name('profile.personal');
+        Route::get('/profile-report',ProfileReport::class)->name('profile.report');
     });
 });

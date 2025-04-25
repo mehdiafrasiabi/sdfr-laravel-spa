@@ -3,13 +3,14 @@
 namespace App\Livewire\Admin\Category;
 
 use App\Models\Category;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
 
     public $name;
     public $categories = [];
@@ -19,6 +20,13 @@ class Index extends Component
     public function mount()
     {
         $this->categories = Category::all();
+        $this->seoConfig();
+    }
+
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('دسته بندی ها');
     }
 
     public function submit($formData, Category $category)

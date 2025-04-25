@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Product;
 
+use Artesaos\SEOTools\Traits\SEOTools;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Product;
@@ -14,7 +15,7 @@ use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads,SEOTools;
 
     public $photos = [];
     public $categories = [];
@@ -37,6 +38,13 @@ class Create extends Component
         }
 
         $this->categories = Category::all();
+
+        $this->seoConfig();
+    }
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('افزودن محصول');
     }
     public function updatedName()
     {

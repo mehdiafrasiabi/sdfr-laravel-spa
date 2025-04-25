@@ -47,6 +47,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function usedCoupons()
+    {
+        return $this->hasMany(CouponUsage::class);
+    }
 
     public function orders()
     {

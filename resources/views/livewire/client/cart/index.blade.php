@@ -1,5 +1,8 @@
 <div x-data="{ modalOpen: false }">
     <!-- container -->
+    @if(session()->has('debug'))
+        <pre style="color: red">{{ print_r(session('debug'), true) }}</pre>
+    @endif
     <div class="max-w-7xl space-y-14 px-4 mx-auto">
         @if($cart)
         <div class="flex md:flex-nowrap flex-wrap items-start gap-5">
@@ -37,7 +40,7 @@
                                 <img src="/products/{{$item->product->id}}/photo/{{@$item->product->coverImage->path}}" class="max-w-full rounded-3xl"
                                      alt="{{$item->product->seo->meta_title}}" />
                             </a>
-                            <button type="button"
+                            <button type="button" wire:click="confirmDeleteItem({{$item->id}})"
                                     class="flex-shrink-0 absolute right-1/2 translate-x-1/2 -translate-y-6 w-11 h-11 inline-flex items-center justify-center bg-error rounded-full text-error-foreground shadow-2xl"
                                     x-on:click="modalOpen = true">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -290,7 +293,7 @@
                                 x-on:click="modalOpen = false">
                             <span class="font-bold text-xs">لغو</span>
                         </button>
-                        <button type="submit" wire:click="deleteItem({{@$item->id}})"
+                        <button type="submit" wire:click="deleteItem"
                                 class="flex items-center justify-center gap-x-2 w-full bg-error border border-transparent rounded-xl text-error-foreground py-2 px-4"
                                 x-on:click="modalOpen = false">
                             <span class="font-bold text-xs">آره،حذف کن</span>

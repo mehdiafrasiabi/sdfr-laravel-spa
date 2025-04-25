@@ -1,4 +1,4 @@
-<div>
+<div style="margin-top: 0px">
     <div class="bg-gradient-to-l from-secondary to-background rounded-2xl p-5">
         <div
             class="flex md:flex-nowrap flex-wrap md:flex-row flex-col items-center justify-center gap-10 py-16">

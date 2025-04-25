@@ -6,6 +6,8 @@ use App\Contracts\PaymentGateWayInterface;
 use App\Models\Payment;
 use App\Models\PaymentMethod;
 use App\Models\Payments;
+use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 class Zibal implements PaymentGateWayInterface
 {
@@ -69,6 +71,13 @@ class Zibal implements PaymentGateWayInterface
 
     public function updatePayment($payment,$request)
     {
+        Student::query()->create(
+            [
+                'user_id' => Auth::id(),
+                'payment_id' => $payment->id,
+            ]
+        );
+
         $payment->update(
             [
                 'status'=>'completed',

@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->enum('type', ['fixed', 'percent']);
-            $table->bigInteger('value');
-            $table->integer('limit');
+            $table->unsignedBigInteger('value');
+            $table->unsignedInteger('limit')->default(1);
+            $table->unsignedBigInteger('min_purchase')->default(0);
             $table->dateTime('expires_at');
             $table->boolean('is_active')->default(true);
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade'); // فقط برای کاربر خاص
+            $table->boolean('is_public')->default(true); // عمومیه یا خصوصی
             $table->timestamps();
         });
     }

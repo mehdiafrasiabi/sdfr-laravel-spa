@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Story;
 
 use App\Models\Story;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -12,11 +13,21 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination,WithFileUploads;
+    use WithPagination,WithFileUploads,SEOTools;
     public $title;
     public $thumbnail;
     public $story;
 
+    public function mount()
+    {
+        $this->seoConfig();
+    }
+
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('استوری ها');
+    }
     public function submit($formData)
     {
 

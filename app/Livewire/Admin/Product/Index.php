@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Product;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\SeoItem;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Livewire\Component;
@@ -12,8 +13,19 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
+    public $search = '';
 
+
+    public function mount()
+    {
+        $this->seoConfig();
+    }
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('محصولات');
+    }
     public function delete(Product $product)
     {
         DB::transaction(function () use ($product) {
@@ -25,11 +37,21 @@ class Index extends Component
     }
     public function render()
     {
-        $products= Product::query()->latest()
+        $products = Product::query()
+            ->when($this->search, function ($query) {
+                $query->where(function ($q) {
+                    $q->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('p_code', 'like', '%' . $this->search . '%');
+                });
+            })
+            ->latest()
             ->with('category', 'coverImage')
             ->paginate(10);
-        return view('livewire.admin.product.index',[
+
+        return view('livewire.admin.product.index', [
             'products' => $products
         ])->layout('layouts.admin.app');
     }
+
+
 }

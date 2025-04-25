@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('layouts.admin.link')
+    {!! SEO::generate() !!}
 </head>
 <body class="dark layout-boxed">
 <!-- BEGIN LOADER -->

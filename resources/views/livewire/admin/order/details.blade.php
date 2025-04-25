@@ -26,11 +26,9 @@
                                                     <div class="col-sm-6 col-12 mr-auto">
                                                         <h6>اطلاعات خریدار :</h6>
 
-                                                        <div class="d-flex">
-                                                            <p class="in-heading align-self-center">{{$orderDetails->user->name}}</p>
-                                                        </div>
-                                                        <p class="inv-email-address">{{$orderDetails->user->email}}</p>
-                                                        <p class="inv-email-address">{{$orderDetails->user->mobile}}</p>
+                                                        <p class="inv-email-address">نام کاربر: {{$orderDetails->user->name}}</p>
+                                                        <p class="inv-email-address"> ایمیل کاربر: {{$orderDetails->user->email}}</p>
+                                                        <p class="inv-email-address"> تلفن کاربر: {{$orderDetails->user->mobile}}</p>
                                                     </div>
 
                                                     <div class="col-sm-6 text-sm-end">
@@ -38,11 +36,14 @@
                                                                 class="inv-title">شماره سفارش : </span> <span
                                                                 class="inv-number">#{{$orderDetails->order_number}}</span>
                                                         </p>
-                                                        <p class="inv-created-date mt-sm-5 mt-3"><span
-                                                                class="inv-title">تاریخ ثت سفارش : </span> <span
-                                                                class="inv-date"> {{jalali($orderDetails->created_at)->format('d M Y | h:i')}}</span></p>
-                                                        <p class="inv-due-date"><span class="inv-title">تاریخ آخرین تغییر : </span>
-                                                            <span class="inv-date">{{jalali($orderDetails->updated_at)->format('d M Y | h:i')}}</span></p>
+                                                        <p class="inv-created-date mt-sm-5 mt-3">
+                                                            <span class="inv-title">
+                                                                تاریخ ثبت سفارش :
+                                                            </span>
+                                                            <span class="inv-date">
+                                                                {{jalali($orderDetails->created_at)->format('%d %B %Y | H:i')}}
+                                                            </span>
+                                                        </p>
                                                     </div>
                                                 </div>
 
@@ -67,7 +68,7 @@
                                                             {{$orderDetails->payment->refNumber}}
 
                                                         </p>
-                                                        <p class="inv-email-address">درگاه:
+                                                        <p class="inv-email-address text-danger">درگاه:
                                                             {{$orderDetails->paymentMethod->name}}
                                                         </p>
                                                         <p class="inv-email-address badge text-white badge-{{$orderDetails->statusPaymentColor}}">

@@ -2,7 +2,7 @@
 <div>
     <div>
 
-            <div class="flex flex-wrap items-center justify-center gap-10 md:pb-10 pb-5 md:px-10 px-5">
+            <div class="{{!empty($stories) ? 'flex flex-wrap items-center justify-center gap-10 md:pb-10 pb-5 md:px-10 px-5' : ''}}">
                 @foreach($stories as $item)
                 <div
                     class="flex flex-col items-center justify-center text-center text-emerald-500 space-y-3 cursor-default animate-pulse">

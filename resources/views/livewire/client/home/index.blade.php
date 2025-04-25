@@ -91,7 +91,7 @@
         <!-- container -->
         <div class="max-w-7xl space-y-14 px-4 mx-auto">
             <!-- story -->
-            <livewire:client.home.story.index/>
+            <livewire:client.home.story.index lazy/>
             <!-- end story -->
 
             <!-- intro -->

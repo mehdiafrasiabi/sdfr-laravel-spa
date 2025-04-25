@@ -9,6 +9,7 @@ use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Morilog\Jalali\Jalalian;
 
 class PersonalInformation extends Component
 {
@@ -42,32 +43,51 @@ class PersonalInformation extends Component
         $this->seo()
             ->setTitle('احراز هویت VIP');
     }
-    public function submit($formData, \App\Models\PersonalInformation $personalInformation)
+    function convertPersianToEnglish($string)
     {
+        $persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+        $english = ['0','1','2','3','4','5','6','7','8','9'];
+        return str_replace($persian, $english, $string);
+    }
+    public function submit($formData)
+    {
+        $birthDateRaw = $this->convertPersianToEnglish($formData['birth_date']);
+        $birthDate = Jalalian::fromFormat('Y/m/d', $birthDateRaw)->toCarbon();
+
         $validator = Validator::make($formData,
+        [
+            'name' => 'required|string|max:35',
+            'address' => 'required|string|max:200',
+            'placeOfBirth' => 'required|string|max:35',
+            'fName' => 'required|string|max:35',
+            'codeMell' => 'required|numeric|min:10',
+            'birth_date' => 'required',
+            'province' => 'required|exists:states,id',
+            'city' => 'required|exists:cities,id',
+            'fMobile' => ['required','min:11','regex:/^09\d{9}$/'],
+            'mMobile' => ['required','min:11','regex:/^09\d{9}$/'],
+        ],
             [
-                'name' => 'required|string|max:80',
-                'address' => 'required|string|max:200',
-                'placeOfBirth' => 'required|string|max:80',
-                'fName' => 'required|string|max:80',
-                'codeMell' => 'required|numeric',
-                'birth_date' => 'required',
-                'province' => 'required|exists:states,id',
-                'city' => 'required|exists:cities,id',
-                'fMobile' => ['required','min:11','regex:/^09\d{9}$/'],
-                'mMobile' => ['required','min:11','regex:/^09\d{9}$/'],
-            ],
-            [
-                '*.required'=>'فیلد اجباری است .',
-                '*.string'=>'فرمت نوشتاری اشتباه است .',
-                '*.min'=>'شمار موبایل همراه 11 رقم است .',
-                'address.max'=>'تعداد کارکتر مجاز : 200 کارکتر',
-                '*.max'=>'تعداد کارکتر مجاز : 80 کارکتر',
-                '*.regex'=>'لطفا شماره موبایل خود را به درستی وارد کنید.',
+                '*.required' => 'فیلد ضروری است.',
+                '*.string' => 'فرمت اشتباه است !',
+                '*.numeric' => 'این فیلد باید از نوع عددی باشد!',
+                'codeMell.min' => 'کدملی 10 رقمی است !',
+                'fMobile.min' => 'شماره موبایل 11 رفم است :09151234567!',
+                'mMobile.min' => 'شماره موبایل 11 رفم است :09151234567!',
+                '*.min' => 'حداقل تعداد کاراکترها : 50',
+                'address.max' => 'حداکثر تعداد کاراکتر آدرس : 200',
+                '*.max' => 'حداکثر تعداد کاراکترها : 35',
+                'fMobile.regex' => 'شماره موبایل نامعتبر است!',
+                'mMobile.regex' => 'شماره موبایل نامعتبر است!',
+                'states.exists' => 'استان نامعتبر است .',
+                'cities.exists' => 'شهر نامعتبر است .',
             ]
+
         );
         $validator->validate();
-        \App\Models\PersonalInformation::query()->create(
+
+        \App\Models\PersonalInformation::updateOrCreate(
+            ['student_id' => Auth::id()], // شرط وجود رکورد
             [
                 'name' => $formData['name'],
                 'address' => $formData['address'],
@@ -76,17 +96,17 @@ class PersonalInformation extends Component
                 'code_mell' => $formData['codeMell'],
                 'father_mobile' => $formData['fMobile'],
                 'mother_Mobile' => $formData['mMobile'],
-                'birth_date' => $formData['birth_date'],
+                'birth_date' =>$birthDate,
                 'state_id' => $formData['province'],
                 'city_id' => $formData['city'],
-                'student_id' => Auth::id(),
-
+                'status' => 'pending', // همیشه بعد از ثبت یا بروزرسانی، حالت باید pending بشه
             ]
         );
-        $this->reset();
-        $this->dispatch('success','سپاس !کارشناسان ما به زودی احراز شمارا تایید خواهند کرد .');
 
+        $this->reset();
+        $this->dispatch('success','سپاس! اطلاعات شما با موفقیت ثبت شد. لطفاً منتظر تأیید کارشناسان باشید.');
     }
+
 
     public function render()
     {

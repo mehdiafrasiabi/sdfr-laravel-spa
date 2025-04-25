@@ -4,13 +4,14 @@ namespace App\Livewire\Admin\Category;
 
 use App\Models\Category;
 use App\Models\CategoryFeature;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Feature extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
 
     public $name;
     public $categoryName;
@@ -22,6 +23,13 @@ class Feature extends Component
         $this->categoryName = $category->name;
 
         $this->categoryId = $category->id;
+        $this->seoConfig();
+    }
+
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('ویژگی دسته بندی');
     }
 
     public function submit($formData, CategoryFeature $categoryFeature)

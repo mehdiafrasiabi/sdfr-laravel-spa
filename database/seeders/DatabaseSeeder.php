@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             SeoItemsTableSeeder::class,
             ContactUsTableSeeder::class,
             PaymentMethodsTableSeeder::class,
-            CouponsTableSeeder::class
+            RolePermissionSeeder::class,
         ]);
     }
 }

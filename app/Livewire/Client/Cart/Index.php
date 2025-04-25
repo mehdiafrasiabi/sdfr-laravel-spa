@@ -5,6 +5,7 @@ namespace App\Livewire\Client\Cart;
 use App\Contracts\PaymentGateWayInterface;
 use App\Models\Cart;
 use App\Models\Coupons;
+use App\Models\CouponUsage;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
@@ -32,14 +33,20 @@ class Index extends Component
     public $latestProducts;
     public $cart = 0;
 
+    public $selectedCartItemId = null;
+
+    public function confirmDeleteItem($cartItemId)
+    {
+        $this->selectedCartItemId = $cartItemId;
+    }
+
     #[On('add-to-cart')]
     public function mount()
     {
-        $latestProducts = Product::query()
+        $this->latestProducts = Product::query()
             ->select('id', 'name', 'title', 'tag', 'price', 'meeting_time', 'course_time', 'p_code')
             ->with('coverImage', 'seo')
             ->get();
-        $this->latestProducts = $latestProducts;
 
         if (auth()->check()) {
             $this->cart = Cart::query()->where('user_id', auth()->id())->count();
@@ -52,10 +59,12 @@ class Index extends Component
 
         $this->totalAmountForPayment($this->totalOriginalPrice, $this->discountCodeAmount);
     }
+
     public function totalAmountForPayment($totalOriginalPrice, $discountCodeAmount): void
     {
-        $this->totalAmount = $totalOriginalPrice - $discountCodeAmount;
+        $this->totalAmount = max(0, $totalOriginalPrice - $discountCodeAmount);
     }
+
     public function getUserCart()
     {
         if (auth()->check()) {
@@ -63,74 +72,92 @@ class Index extends Component
         }
     }
 
-    public function deleteItem($cartItemId)
+    public function deleteItem()
     {
-        Cart::query()->where('id', $cartItemId)->delete();
+        Cart::query()->where('id', $this->selectedCartItemId)->delete();
+        $this->selectedCartItemId = null;
 
-        $this->cartItems = Cart::query()
-            ->with('product:id,name,title,tag,price,course_time,meeting_time,description,p_code')
-            ->where('user_id', auth()->id())
-            ->get();
+        $this->updateCart();
 
-        $this->cart = $this->cartItems->count(); // مقدار جدید سبد خرید
-
-        // ارسال رویداد به کامپوننت هدر برای کاهش مقدار
         $this->dispatch('remove-from-cart', $this->cart);
-
         $this->dispatch('success', 'آیتم با موفقیت از سبد خرید حذف شد.');
     }
-
-
     public function seoConfig()
     {
-        $this->seo()
-            ->setTitle('سبد خرید');
+        $this->seo()->setTitle('سبد خرید');
     }
-
-
 
     public function checkDiscountCode($formData): void
     {
-
         $validator = Validator::make($formData, [
-            'code' => 'required|string|exists:coupons,code|min:4|max:6',
-
+            'code' => 'required|string|exists:coupons,code|min:4|max:15',
         ], [
             'code.required' => 'فیلد ضروری است.',
             'code.string' => 'فرمت اشتباه است !',
-            'code.max' => 'حداکثر تعداد کاراکترها : 10',
+            'code.max' => 'حداکثر تعداد کاراکترها : 15',
             'code.min' => 'حداقل تعداد کاراکترها : 4',
             'code.exists' => 'کد تخفیف وارد شده معتبر نیست.',
-
         ]);
         $validator->validate();
         $this->resetValidation();
 
+        $coupon = Coupons::query()->where('code', $formData['code'])->first();
 
-        $code = Coupons::query()->where('code', $formData['code'])->first();
-
-        $this->applyDiscount($code);
+        $this->applyDiscount($coupon);
     }
 
-    public function applyDiscount($code)
+    public function applyDiscount($coupon)
     {
+        $user = Auth::user();
 
-        if (!$code->is_active || (Carbon::parse($code->expires_at)->isPast())) {
-            session()->flash('error', 'این کد تخفیف معتبر نیست یا منقضی شده است.');
+        if (!$coupon || !$coupon->is_active || now()->gt($coupon->expires_at)) {
+            session()->flash('error', 'کد تخفیف معتبر نیست یا منقضی شده.');
             return;
         }
-        if ($code->limit <= 0) {
-            session()->flash('error', 'شرایط استفاده از این کد تخفیف برقرار نیست.');
+
+        if ($coupon->user_id && $coupon->user_id !== $user->id) {
+            session()->flash('error', 'این کد تخفیف فقط برای کاربر خاصی تعریف شده.');
             return;
         }
-        $this->discountCodeAmount = $discount = $code->type == 'percent' ? ($this->totalOriginalPrice * $code->value) / 100 : $code->value;
 
+        $alreadyUsed = CouponUsage::where('coupon_id', $coupon->id)
+            ->where('user_id', $user->id)
+            ->exists();
+        if ($alreadyUsed) {
+            session()->flash('error', 'شما قبلاً از این کد تخفیف استفاده کرده‌اید.');
+            return;
+        }
+
+        if ($this->totalOriginalPrice < $coupon->min_purchase) {
+            session()->flash('error', 'حداقل خرید برای این کوپن برقرار نیست.');
+            return;
+        }
+
+        // محاسبه تخفیف
+        $discount = $coupon->type === 'percent'
+            ? ($this->totalOriginalPrice * $coupon->value) / 100
+            : $coupon->value;
+
+        $this->discountCodeAmount = $discount;
         $this->totalAmountForPayment($this->totalOriginalPrice, $discount);
-
         $this->showDiscountCode = true;
-        session()->flash('success', 'کد تخفیف شما با موفقیت اعمال شد.');
+
+        // ثبت استفاده
+        CouponUsage::create([
+            'coupon_id' => $coupon->id,
+            'user_id' => $user->id,
+        ]);
+
+        // کم کردن limit و غیرفعالسازی
+        $coupon->decrement('limit');
+        if ($coupon->limit <= 0) {
+            $coupon->update(['is_active' => false]);
+        }
+
+        session()->flash('success', 'کد تخفیف با موفقیت اعمال شد.');
 
     }
+
     public function updateCart()
     {
         $this->cartItems = Cart::query()
@@ -179,17 +206,12 @@ class Index extends Component
             'order_number' => $orderNumber,
         ]);
     }
-
     public function submitOrderBeforePayment($cartItems, $getPaymentMethodId, $orderNumber)
     {
         DB::transaction(function () use ($cartItems, $getPaymentMethodId, $orderNumber) {
-
             $order = $this->createOrder($orderNumber, $getPaymentMethodId);
-
             $this->createOrderItem($cartItems, $order->id);
-
             $this->createPayment($order->id, $orderNumber);
-
         });
     }
 
@@ -207,17 +229,17 @@ class Index extends Component
         $this->cartItems = Cart::query()->with('product:id,name,title,tag,price,course_time,meeting_time,description,p_code')
             ->where('user_id', Auth::id())
             ->get()->map(function ($item) {
-                $product = $item->product;
-                //قیمت اصلی هر محصول
-                $originalPrice = $product->price;
-                $item->originalPrice = $originalPrice;
+                $item->originalPrice = $item->product->price;
                 return $item;
             });
+
         $this->invoice = [
             'totalProductCount' => $this->cartItems->count(),
             'totalOriginalPrice' => $this->cartItems->sum('originalPrice'),
         ];
+
         Session::put('invoiceFromCart', $this->invoice);
+
         return view('livewire.client.cart.index')->layout('layouts.client.app');
     }
 }

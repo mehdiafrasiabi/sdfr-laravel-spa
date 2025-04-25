@@ -1,5 +1,14 @@
 <div class="col-md-12">
-
+    @push('link')
+        <style>
+            .wrap-text {
+                word-wrap: break-word;
+                white-space: normal;
+                overflow-wrap: break-word;
+                max-width: 300px; /* یا هر عرضی که می‌خوای */
+            }
+        </style>
+    @endpush
     @if(session()->has('success'))
 
         <div class="alert alert-icon-left alert-light-success alert-dismissible fade show mb-4" role="alert">
@@ -28,12 +37,15 @@
                     افزودن محصول جدید
                 </a>
 
-
             </div>
         </div>
         <div class="widget-content widget-content-area">
 
             <div class="table-responsive">
+                <div class="mb-4">
+                    <input type="text" wire:model.live.debounce.350ms="search" placeholder="جستجو بر اساس نام یا کد محصول" style="width: 320px"
+                           class="form-control border rounded px-3 py-2  md:w-1/3" />
+                </div>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -67,7 +79,7 @@
                             <td>
                                 <div class="media">
                                     <div class="media-body align-self-center">
-                                        <p class="mb-0">{{$product->name}}</p>
+                                        <p class="mb-0 wrap-text">{{$product->name}}</p>
                                     </div>
                                 </div>
                             </td>

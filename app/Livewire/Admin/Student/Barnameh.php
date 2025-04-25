@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Student;
 
 use App\Models\Student;
 use App\Models\User;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,8 @@ use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
 class Barnameh extends Component
-{ use WithPagination,WithFileUploads;
+{
+    use WithPagination,WithFileUploads,SEOTools;
     public $title;
     public $barnameh;
     public $studentName;
@@ -22,8 +24,13 @@ class Barnameh extends Component
     {
         $this->studentId = $student->id;
         $this->studentName = $student->name;
+        $this->seoConfig();
     }
-
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('برنامه های '.$this->studentName);
+    }
     public function submit($formData)
     {
 

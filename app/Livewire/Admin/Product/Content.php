@@ -3,11 +3,13 @@
 namespace App\Livewire\Admin\Product;
 
 use App\Models\Product;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Content extends Component
 {
+    use SEOTools;
     public $productName;
     public $description;
     public $productId;
@@ -17,7 +19,13 @@ class Content extends Component
         $this->productName = $product->name;
         $this->productId = $product->id;
         $this->description = $product->description;
+        $this->seoConfig();
+    }
 
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('محتوای محصول '.($this->productName));
     }
 
     public function submit($formData , Product $product)

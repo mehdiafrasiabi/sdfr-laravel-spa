@@ -4,6 +4,8 @@ namespace App\Notifications;
 
 use App\Notifications\Channels\SmsChannel;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class SendSmsNotification extends Notification
@@ -21,7 +23,7 @@ class SendSmsNotification extends Notification
     {
         $this->mobile = $mobile;
         $this->template = $template;
-        $this->parameters = $parameters;
+        $this->parameters = [1 => $parameters];
 
     }
 

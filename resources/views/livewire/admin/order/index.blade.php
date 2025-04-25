@@ -60,10 +60,6 @@
                             ایمیل
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="invoice-list" rowspan="1" colspan="1"
-                            aria-label="Status: activate to sort column ascending" style="width: 62px;">
-                            وضعیت سفارش
-                        </th>
-                        <th class="sorting" tabindex="0" aria-controls="invoice-list" rowspan="1" colspan="1"
                             aria-label="Amount: activate to sort column ascending" style="width: 62px;">
                             مبلغ نهایی
                         </th>
@@ -116,14 +112,6 @@
                             </span>
                             </td>
                             <td>
-                                <select class="badge badge-light-{{$order->statusColor}} inv-status" wire:change="changeStatus({{$order->id}},$event.target.value)">
-                                    <option value="pending" {{$order->status=='pending' ? 'selected' :''}}>درانتظار</option>
-                                    <option value="processing" {{$order->status=='processing' ? 'selected' :''}}>درحال پردازش</option>
-                                    <option value="completed" {{$order->status=='completed' ? 'selected' :''}}> تکمیل شده</option>
-                                    <option value="canceled" {{$order->status=='canceled' ? 'selected' :''}}>کنسل شده</option>
-                                </select>
-                            </td>
-                            <td>
                                 <span class="inv-amount">{{number_format($order->amount)}}</span>
                             </td>
                             <td>
@@ -138,7 +126,7 @@
                                                                             ry="2"></rect><line
                                         x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line
                                         x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg> {{verta($order->created_at)}} </span>
+                                </svg>{{jalali($order->created_at)->format('%d %B %Y | H:i')}}</span>
                             </td>
                             <td>
 

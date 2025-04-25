@@ -3,11 +3,13 @@
 namespace App\Livewire\Admin\Order;
 
 use App\Models\Order;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Details extends Component
 {
+    use SEOTools;
     public $orderDetails;
     public $statusColor;
 
@@ -25,7 +27,12 @@ class Details extends Component
         $orderDetails->statusPaymentColor= $this->getStatusColor($order->payment->status);
         $this->statusColor= $this->getStatusColor($orderDetails->status);
 
-
+        $this->seoConfig();
+    }
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('جزییات سفارشات');
     }
     public function getStatusColor($status)
     {

@@ -3,17 +3,28 @@
 namespace App\Livewire\Admin\Payment;
 
 use App\Models\PaymentMethod;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
 
     public $name;
     public $merchantCode;
     public $paymentId;
+
+    public function mount()
+    {
+        $this->seoConfig();
+    }
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('درگاه پرداخت');
+    }
 
     public function submit($formData, PaymentMethod $paymentMethod)
     {
@@ -50,14 +61,19 @@ class Index extends Component
 
     public function changeStatus(PaymentMethod $payment)
     {
-        if ($payment->active) {
-            $payment->update(['active' => false]);
-        } else {
-            $payment->update(['active' => true]);
-        }
-        $this->dispatch('success', ' عملیات با موفقیت انجام شد');
+        if (!$payment->active) {
+            // اول همه درگاه‌ها رو غیرفعال کن
+            PaymentMethod::query()->update(['active' => false]);
 
+            // سپس درگاه انتخاب‌شده رو فعال کن
+            $payment->update(['active' => true]);
+
+            $this->dispatch('success', 'درگاه فعال شد و بقیه غیرفعال شدند');
+        } else {
+            $this->dispatch('warning', 'این درگاه قبلاً فعال بوده است');
+        }
     }
+
 
     public function render()
     {

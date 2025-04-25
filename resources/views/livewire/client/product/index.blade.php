@@ -203,10 +203,14 @@
                 </div>
                 <div class="flex gap-3 mt-3">
                     @if(\Illuminate\Support\Facades\Auth::check())
-                        @if(!$inCart)
-                    <button  wire:click="addToCart"
+                        @if($hasPurchased)
+                            <div class="w-full h-11 inline-flex items-center justify-center gap-1 bg-secondary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4" style="cursor: not-allowed">
+                                <span class="font-semibold text-sm text-success "> شما دانشجوی این دوره هستید ✅</span>
+                            </div>
+                        @elseif(!$inCart)
+                               <button  wire:click="addToCart"
                             class="w-full h-11 inline-flex items-center justify-center gap-1 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">
-                        <span class="font-semibold text-sm" wire:loading.remove>اضافه به سبد</span>
+                        <span class="font-semibold text-sm" wire:loading.remove>اضافه به سبد خرید</span>
                         <svg wire:loading.remove xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                              class="w-5 h-5">
                             <path fill-rule="evenodd"

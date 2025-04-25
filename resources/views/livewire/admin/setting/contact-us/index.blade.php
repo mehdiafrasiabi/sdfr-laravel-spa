@@ -1,4 +1,14 @@
 <div class="col-md-12">
+    @push('link')
+        <style>
+            .wrap-text {
+                word-wrap: break-word;
+                white-space: normal;
+                overflow-wrap: break-word;
+                max-width: 300px; /* یا هر عرضی که می‌خوای */
+            }
+        </style>
+    @endpush
     <div class="statbox widget box box-shadow">
         <div class="widget-header">
             <div class="d-flex justify-content-between align-items-center">
@@ -17,6 +27,7 @@
                         <th  scope="col">متن پیغام</th>
                         <th scope="col">وضعیت</th>
                         <th scope="col">تاریخ ثبت درخواست</th>
+                        <th scope="col">تاریخ تماس پشتیبان</th>
                         <th class="text-center" scope="col"></th>
                     </tr>
                     </thead>
@@ -35,7 +46,7 @@
                                 {{$item->mobile}}
                             </td>
                             <td>
-                                <p style="display: block">{{$item->text}}</p>
+                                <p class="wrap-text">{{$item->text}}</p>
                             </td>
 
                             <td>
@@ -54,7 +65,8 @@
                                     </option>
                                 </select>
                             </td>
-                            <td>{{jalali($item->created_at)->format('%B %d، %Y | h:i')}} </td>
+                            <td>{{jalali($item->created_at)->format('%d %B %Y | H:i')}} </td>
+                            <td>{{jalali($item->updated_at)->format('%d %B %Y | H:i')}} </td>
                             <td class="text-center">
                                 <div class="action-btns">
                                     <a href="javascript:void(0);"

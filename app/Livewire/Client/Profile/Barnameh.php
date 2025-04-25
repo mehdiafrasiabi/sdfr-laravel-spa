@@ -27,12 +27,12 @@ class Barnameh extends Component
         $plans = \App\Models\Barnameh::query()
             ->where('student_id', Auth::id())
             ->latest()
-            ->paginate(13);
+            ->paginate(12);
 
         $reportMonthly = ReportMonthly::query()
             ->where('student_id', Auth::id())
             ->latest()
-            ->paginate(5);
+            ->paginate(12);
 
         return view('livewire.client.profile.barnameh', [
             'plans' => $plans,

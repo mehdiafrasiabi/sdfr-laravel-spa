@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Notifications\SendSmsNotification;
 use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -48,9 +49,10 @@ class Index extends Component
         $validator->validate();
         $this->resetValidation();
 
-        $activeCode = mt_rand(10000, 99999);
+        $activeCode = mt_rand(1000, 9999);
 
-        $notification = new SendSmsNotification($formData['mobile'], 'sendOtpSms', $activeCode);
+        $notification = new SendSmsNotification($formData['mobile'],'Ghasedak',$activeCode);
+
 
         try {
             Notification::sendNow($formData['mobile'], $notification);
@@ -61,9 +63,7 @@ class Index extends Component
 
 
         } catch (\Exception $e) {
-
             $this->sendSmsError = "متاسفانه پیامک ارسال نشد. خطا: " . $e->getMessage();
-
         }
     }
     public function submitCode($formData)

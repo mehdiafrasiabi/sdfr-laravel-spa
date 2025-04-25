@@ -4,13 +4,14 @@ namespace App\Livewire\Admin\State;
 
 use App\Models\Country;
 use App\Models\State;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
 
     public $name;
     public $countryId2;
@@ -20,6 +21,12 @@ class Index extends Component
     public function mount()
     {
         $this->countries = Country::all();
+        $this->seoConfig();
+    }
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('استان ها');
     }
 
     public function submit($formData, State $state)

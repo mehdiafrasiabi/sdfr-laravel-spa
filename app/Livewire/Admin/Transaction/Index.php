@@ -3,15 +3,25 @@
 namespace App\Livewire\Admin\Transaction;
 
 use App\Models\Payment;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
     public $search = '';
     public $status =[];
 
+    public function mount()
+    {
+        $this->seoConfig();
+    }
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('تراکنش ها');
+    }
     public function getTransactionWithFilters($search = null, $status = null)
     {
         $query = Payment::query()

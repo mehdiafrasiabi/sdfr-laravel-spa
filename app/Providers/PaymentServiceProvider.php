@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Contracts\PaymentGateWayInterface;
 use App\Models\PaymentMethod;
-use App\Traits\PaymentGateWay;
 use Illuminate\Support\ServiceProvider;
 
 class PaymentServiceProvider extends ServiceProvider
@@ -18,7 +17,7 @@ class PaymentServiceProvider extends ServiceProvider
             $activePayment = PaymentMethod::query()->where("active",true)->first();
             $gateWayClass = 'App\\Services\\PaymentGateWay\\'.$activePayment->name;
             if(!$activePayment ||!class_exists($gateWayClass)){
-                throw new \Exception("Payment method not found or invalid");
+                throw new \Exception("هیچ درگاهی وجود ندارد");
             }
             return new $gateWayClass;
         });

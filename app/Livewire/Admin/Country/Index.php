@@ -3,15 +3,27 @@
 namespace App\Livewire\Admin\Country;
 
 use App\Models\Country;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination,SEOTools;
     public $name;
     public $countryId;
+
+    public function mount()
+    {
+        $this->seoConfig();
+    }
+
+    public function seoConfig()
+    {
+        $this->seo()
+            ->setTitle('کشور ها');
+    }
 
     public function submit($formData , Country $country)
     {
