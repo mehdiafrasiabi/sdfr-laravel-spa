@@ -18,7 +18,7 @@
                                         در مورد SDFR چه میشنویم؟
                                     </span>
                         <span class="font-semibold xs:text-base text-sm text-muted">
-                            ین‌ها، بخش خیلی کوچکی از نظراتی هستند که افراد مختلف در مورد SDFR دارند.
+                            این‌ها، بخش خیلی کوچکی از نظراتی هستند که افراد مختلف در مورد SDFR دارند.
                         </span>
                     </div>
                 </div>
@@ -29,22 +29,21 @@
                                 <div
                                     class="flex flex-col items-center justify-center bg-background border border-border rounded-2xl shadow-xl shadow-black/5 space-y-8 p-8">
                                     <div class="font-semibold text-sm text-muted text-center">
-                                        وبسایت شما به خوبی به نیازها و سطح دانش کاربران پاسخ می‌دهد. از
-                                        مبتدیان
-                                        تا
-                                        حرفه‌ایان، می‌توانند از محتواهای آموزشی شما بهره‌بردند. این
-                                        گسترده‌بودن
-                                        پوشش
-                                        محتوا بسیار قابل قدردانی است.
+                                        از وقتی با شما مشاوره داشتم، درس خوندن برام منظم‌تر و جذاب‌تر شد. برنامه‌هایی که
+                                        می‌دادین انقدر خوب بودن که اصلاً خسته نمی‌شدم. هر جلسه مشاوره‌تون یه بمب انرژی
+                                        مثبت بود و حرفاتون مثل حرفای یه دوست واقعی بهم انگیزه می‌داد برای شروع یه هفته‌
+                                         پرانرژی!
+                                        ❤️
+
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
-                                            <img src="/client/assets/images/avatars/01.jpeg"
-                                                 class="w-full h-full object-cover" alt="...">
+                                            <img src="/client/assets/images/avatars/taraTorabi.jpg"
+                                                 class="w-full h-full object-cover" alt="تارا ترابی">
                                         </div>
                                         <div class="flex flex-col items-start space-y-1">
                                                         <span class="line-clamp-1 font-bold text-xs text-foreground">
-                                                                مهدی افراسیابی گولک
+                                                               تارا ترابی
                                                         </span>
                                             <span class="font-semibold text-xs text-muted">
                                                                 کنکوری 1403
@@ -57,23 +56,22 @@
                                 <div
                                     class="flex flex-col items-center justify-center bg-background border border-border rounded-2xl shadow-xl shadow-black/5 space-y-8 p-8">
                                     <div class="font-semibold text-sm text-muted text-center">
-                                        من به تیم شما بابت پشتیبانی عالیتان از وبسایتتان تشکر می‌کنم. سوالات
-                                        و
-                                        مشکلات من به سرعت پاسخ داده می‌شوند و همیشه یک راه حل مناسب برای هر
-                                        مشکل
-                                        پیدا می‌کنید. این امر بسیار قابل ارزش است.
+                                        توی سالی که شما مشاورم بودین، همیشه برنامه‌هام با نظر خودم تنظیم می‌شد و هیچ
+                                        کاری عقب نمی‌موند، حتی اگه وقت کم بود. بیشتر از یه مشاور، مثل یه همراه واقعی
+                                        کنارمون بودین، طوری که حتی ناراحتیا‌مونم باهاتون درمیون می‌ذاشتیم 😅🥲 خسته نباشین
+                                        واقعاً! ❤️
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
-                                            <img src="/client/assets/images/avatars/01.jpeg"
-                                                 class="w-full h-full object-cover" alt="...">
+                                            <img src="/client/assets/images/avatars/nadiaMilan.jpg"
+                                                 class="w-full h-full object-cover" alt="نادیا میلان">
                                         </div>
                                         <div class="flex flex-col items-start space-y-1">
                                             <span class="line-clamp-1 font-bold text-xs text-foreground">
-                                                        بهشاد اتقیایی
+                                                       نادیا میلان
                                             </span>
                                             <span class="font-semibold text-xs text-muted">
-                                                            کنکوری 1402
+                                                            کنکوری 1403
                                             </span>
                                         </div>
                                     </div>
